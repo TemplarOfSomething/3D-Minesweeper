@@ -2,6 +2,7 @@
 from random import choice
 from math import floor
 
+
 def coordinate_mapper(x_amount:int, y_amount:int, z_amount:int)->list:
     # the largest value will be x_amount-1, y_amount-1, z_amount-1
     # list is generated in order of z,y,x 
@@ -11,6 +12,7 @@ def coordinate_mapper(x_amount:int, y_amount:int, z_amount:int)->list:
 def minefield_dict_maker(coord_list:list)->dict:
     # all coordinates start with 0 mines because field is unpopulated
     return {coord_list[i] : 0 for i in range(len(coord_list))}
+
 
 def minefield_populator(minefield_dict:dict, difficulty:int=1)->dict:
     # difficulty will be a potential addition, if so, it will use the following values
@@ -35,7 +37,7 @@ def minefield_populator(minefield_dict:dict, difficulty:int=1)->dict:
 
     return minefield_dict
 
-print(minefield_populator(minefield_dict_maker(coordinate_mapper(3, 3, 3))))
+
 
 
 
