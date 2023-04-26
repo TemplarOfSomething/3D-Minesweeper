@@ -4,7 +4,7 @@
 from minefield_maker import *
 
 #Constants
-DEBUG = True
+DEBUG = False
 
 if DEBUG == True:
     x_size = 3
@@ -46,7 +46,7 @@ def adjacent_finder(coordinate:tuple, largest_coord:tuple)->list:
 
     return adjacent_list
 
-def logic_implementer(coordinate:tuple, adjacent_list:list)->int:
+def logic_implementer(coordinate:tuple, adjacent_list:list, minefield_dict:dict)->int:
     """takes a coordinate, its adjacent spaces, and updates the minefield dictionary accordingly"""
     adjacent = 0
 
@@ -59,6 +59,18 @@ def logic_implementer(coordinate:tuple, adjacent_list:list)->int:
     if DEBUG == True:
         print(f"what was updated: {coordinate}:{adjacent}")
 
+def logical_minefield_dict_maker(x_size:int, y_size:int, z_size:int)->dict:
+
+    #make the logically incorrect dict
+    minefield_dict = minefield_populator(minefield_dict_maker(coordinate_mapper(x_size, y_size, z_size)))
+
+    #make it logically correct
+    for i in minefield_dict:
+        adjacent = adjacent_finder(i, (x_size, y_size, z_size))
+        logic_implementer(i, adjacent, minefield_dict)
+
+    return minefield_dict
+
 if DEBUG == True:
     for i in minefield_dict:
         adjacent = adjacent_finder(i, (x_size, y_size, z_size))
@@ -66,6 +78,8 @@ if DEBUG == True:
     
     for i in minefield_dict:
         print(i, minefield_dict[i])
+
+
 
 
     
