@@ -1,8 +1,4 @@
-#####NEEDS TO:
-##take in a coordinate and return:
-## connected blanks
-## numbers adjacent to these blanks
-## as a dictionary of coordinate:number
+#Desc: makes a function which provides coordinates which are chained together, and their values in a dict
 
 DEBUG = True
 from minefield_logic import adjacent_finder, logical_minefield_dict_maker
@@ -24,8 +20,10 @@ def blank_chain_revealer(minefield_dict:dict, clicked_coord:tuple)->dict:
             adjacents.update(adjacent_finder(coord, (4,4,4)))
         chain_adjacents.add(coord)
 
+    for coord in chain_adjacents:
+        chain_dict = {coord:minefield_dict.get(coord)}
 
-    return chain_adjacents
+    return chain_dict
 
 
 if DEBUG == True:
