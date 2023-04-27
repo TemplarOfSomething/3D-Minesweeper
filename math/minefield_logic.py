@@ -5,12 +5,7 @@ from minefield_maker import *
 
 #Constants
 DEBUG = False
-
-if DEBUG == True:
-    x_size = 3
-    y_size = 3
-    z_size = 3
-    minefield_dict = minefield_populator(minefield_dict_maker(coordinate_mapper(x_size, y_size, z_size)))
+    
 
 def adjacent_finder(coordinate:tuple, largest_coord:tuple)->list:
     """takes a key from the minefield_dict and returns all valid adjacent spaces"""
@@ -60,21 +55,27 @@ def logic_implementer(coordinate:tuple, adjacent_list:list, minefield_dict:dict)
         print(f"what was updated: {coordinate}:{adjacent}")
 
 def logical_minefield_dict_maker(x_size:int, y_size:int, z_size:int)->dict:
-
+    
     #make the logically incorrect dict
     minefield_dict = minefield_populator(minefield_dict_maker(coordinate_mapper(x_size, y_size, z_size)))
 
     #make it logically correct
     for i in minefield_dict:
-        adjacent = adjacent_finder(i, (x_size, y_size, z_size))
+        adjacent = adjacent_finder(i, (x_size-1, y_size-1, z_size-1))
         logic_implementer(i, adjacent, minefield_dict)
 
     return minefield_dict
 
 if DEBUG == True:
+
+    x_size = 5
+    y_size = 5
+    z_size = 5
+    minefield_dict = minefield_populator(minefield_dict_maker(coordinate_mapper(x_size, y_size, z_size)))
+
     for i in minefield_dict:
-        adjacent = adjacent_finder(i, (x_size, y_size, z_size))
-        logic_implementer(i, adjacent)
+        adjacent = adjacent_finder(i, (x_size-1, y_size-1, z_size-1))
+        logic_implementer(i, adjacent, minefield_dict)
     
     for i in minefield_dict:
         print(i, minefield_dict[i])
