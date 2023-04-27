@@ -1,7 +1,10 @@
-#Desc: takes a minefield dictionary and implements the number logic of the field
+
+
+
+    #Desc: takes a minefield dictionary and implements the number logic of the field
 
 #Imports
-from minefield_maker import *
+from MATH_minefield_maker import *
 
 #Constants
 DEBUG = False
@@ -78,8 +81,3 @@ if DEBUG == True:
     
     for i in minefield_dict:
         print(i, minefield_dict[i])
-
-
-
-
-    
