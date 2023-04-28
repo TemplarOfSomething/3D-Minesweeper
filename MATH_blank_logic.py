@@ -13,6 +13,7 @@ def blank_chain_revealer(minefield_dict:dict, clicked_coord:tuple)->dict:
     
     adjacents = set(adjacent_finder(clicked_coord, (4,4,4)))
     chain_adjacents = set([])
+    chain_dict = {}
 
     ##Find adjacent blanks##
     for coord in adjacents.copy():
@@ -21,7 +22,7 @@ def blank_chain_revealer(minefield_dict:dict, clicked_coord:tuple)->dict:
         chain_adjacents.add(coord)
 
     for coord in chain_adjacents:
-        chain_dict = {coord:minefield_dict.get(coord)}
+        chain_dict.update({coord:minefield_dict.get(coord)})
 
     return chain_dict
 
