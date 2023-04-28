@@ -69,6 +69,25 @@ def logical_minefield_dict_maker(x_size:int, y_size:int, z_size:int)->dict:
 
     return minefield_dict
 
+def limited_minefield_dict(x_size:int, y_size:int, z_size:int)->dict:
+    """returns a minefield dictionary with numbers strictly less than 9. for lack of textures reasons"""
+    aboveLimit = True
+
+    while aboveLimit:
+        minefield_dict = logical_minefield_dict_maker(x_size, y_size, z_size)
+
+        for coord in minefield_dict:
+            if minefield_dict.get(coord) != "*":
+
+                if int(minefield_dict.get(coord)) > 8:
+                    aboveLimit = True
+                    break
+                else:
+                    aboveLimit = False
+
+
+    return minefield_dict
+
 if DEBUG == True:
 
     x_size = 5
