@@ -1,7 +1,7 @@
 #Desc: makes a function which provides coordinates which are chained together, and their values in a dict
 
 DEBUG = True
-from minefield_logic import adjacent_finder, logical_minefield_dict_maker
+from MATH_minefield_logic import adjacent_finder, logical_minefield_dict_maker
 
 if DEBUG == True:
     minefield_dict = logical_minefield_dict_maker(5, 5, 5)
