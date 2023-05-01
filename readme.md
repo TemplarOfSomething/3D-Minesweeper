@@ -1,11 +1,12 @@
-The classic hit game minesweeper but its 3D (not done yet!!!!!!!)
+# 3D Minesweeper
 
-Current plan:
-split files into their main focus, ex. logic for mine generation -> math, textures -> rendering, gui -> gui
-placeholders are so folders go to github even if nothing else is in said folders
+#### Requires Ursina, Ursina[extras], GPIOzero, math, random and time.
 
-most important thing to do rn: get rendering working
-then generation logic,
-then gui,
-GPIO should be fine but we will have to be sure we build it in before anything else
-graphics library is ursina
+
+The classic minesweeper but in 3D.
+Includes extra features, such as a layer mode and a mine"sweeping" mode. <br>
+
+Layer mode provides the ability to look at a single layer of the minefield,
+whether it be for easier access or to pick apart the minefield slowly and methodically.
+
+Mine"sweeper" mode allows one to see how far away a mine is via LED indicator, but this requires the proper GPIO setup (which will be disclosed once it is figured out entirely)
