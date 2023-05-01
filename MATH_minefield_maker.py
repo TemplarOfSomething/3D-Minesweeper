@@ -29,7 +29,7 @@ def minefield_populator(minefield_dict:dict, difficulty:int=1)->dict:
         chosen_spot = choice(coordinate_pool)     #choose from coordinates in minefield
         
         if chosen_spot in chosen_spot_set:
-            continue        #break on repeats
+            continue        #skip repeats
 
         else:
             chosen_spot_set.add(chosen_spot)

@@ -1,7 +1,4 @@
-
-
-
-    #Desc: takes a minefield dictionary and implements the number logic of the field
+#Desc: takes a minefield dictionary and implements the number logic of the field
 
 #Imports
 from MATH_minefield_maker import *
