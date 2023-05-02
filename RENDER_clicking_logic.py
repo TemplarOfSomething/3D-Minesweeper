@@ -15,48 +15,60 @@ clicked = RENDER_minefield_rendering.clicked
 # Waits for left or right click
 
 def update():
+    # Brings in all global variables
+
     global blank_chain
     global already_dead
     global what_happened
     global button
+
+    # Only runs if clicked on an entity
     try:
+        # Runs for left click only
         if (mouse.left == True) and (already_dead == False):
+            # If entity is a mine, game over
             if mine_dict[RENDER_minefield_rendering.point] == '*':
                 death_screen()
                 what_happened.text = 'You have hit a mine and died!'
                 what_happened.color = color.red
                 button = Button(text='EXIT', position=(0,0), color=color.red, text_color=color.black, on_click=exit)
                 button.fit_to_text()
+            # Else entity is destroyed and surronding mines are shown
             else:
                 blank_chain = MATH_blank_logic.blank_chain_revealer(mine_dict, RENDER_minefield_rendering.point)
                 show_numbers()
                 destroy(mouse.hovered_entity)
                 sleep(0.5)
-
+        # Runs for right click only
         if mouse.right == True:
+            # Runs if there are no flags left
             if RENDER_minefield_rendering.flag_count > 0:
                 mouse.hovered_entity.color = color.orange
                 RENDER_minefield_rendering.flag_count -= 1
                 RENDER_minefield_rendering.flags.text = RENDER_minefield_rendering.flag_count
                 sleep(0.5)
+            # If entity is already flagged, removes flag and adds back into count
             elif mouse.hovered_entity.color == color.orange:
                 RENDER_minefield_rendering.flag_count += 1
                 RENDER_minefield_rendering.flags.text = RENDER_minefield_rendering.flag_count
                 mouse.hovered_entity.color = color.white
                 sleep(0.5)
+            # Flags entity if not already flagged
             else:
                 if already_dead == False:
                     death_screen()
-                    what_happened.text = 'You are out of mines right now.'
+                    what_happened.text = 'You are out of flags right now.'
                     button = Button(text='Go_Back', position=(0,0), color=color.green, text_color=color.black, on_click=go_back)
                     button.fit_to_text()
                     already_dead = True
                 else:
                     pass
+    # If not clicked on entity, nothing happens
     except AttributeError:
         already_dead = False
-        print("Worked")
         sleep(0.5)
+
+# Respawns the minefield
 
 def go_back():
     global back_drop
@@ -73,7 +85,7 @@ def go_back():
     already_dead = False
                     
 
-# Hides cubes for the death scene
+# Hides cubes for the death scene and sets up backdrop
 
 def death_screen():
         global what_happened
