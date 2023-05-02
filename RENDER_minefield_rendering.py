@@ -14,21 +14,28 @@ amount = len(mine_dict)
 global cubes
 cubes = {}
 
+# Coordinate variable
+
 global clicked
 clicked = 0
+
+# Counts the number of flags the user has at their disposal
 
 global flag_count
 flag_count = 1
 
+# Shows number of flags left
+
 flags = Text(text=flag_count, scale=2, origin=(14,-8))
 
-def flag():
-    mouse.hovered_entity.color = color.gray
+# Gets the mouse coordinate
 
 def get_point():
     global clicked
     clicked = mouse.world_point
     round_point()
+
+# Makes coordinate into a readable number
 
 def round_point():
     global point
@@ -37,9 +44,13 @@ def round_point():
     z = int(clicked[2])
     point = (x,y,z)
 
+# Returns a list of all the keys in the cubes dictionary
+
 def get_list():
     global cubes
     return cubes.keys()
+
+# makes cubes
 
 for z in range(5):
     for y in range(5):

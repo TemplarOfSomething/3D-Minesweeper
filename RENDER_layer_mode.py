@@ -11,6 +11,7 @@ enable_2d = False
 global layer
 layer = 0
 
+# Returns a list of the keys for the layer user is trying to view
 
 def proper_list_func(mine_list):
     global layer
@@ -24,6 +25,9 @@ def proper_list_func(mine_list):
             proper_list.append(mine_list[i])
     return proper_list
 
+
+# Compares the keys to the dict, and hides all other cubes
+
 def proper_dict(cubes, mine_list):
     for z in range(5):
         for y in range(5):
@@ -34,15 +38,19 @@ def proper_dict(cubes, mine_list):
                     RENDER_minefield_rendering.cubes[(x,y,z)].enabled = False
     return cubes
 
+# Shows all the cubes again
 def back_to_3d():
     for z in range(5):
         for y in range(5):
             for x in range(5):
                 RENDER_minefield_rendering.cubes[(x,y,z)].enabled = True
 
+# Waits for input from keyboard
+
 def input(key):
     global enable_2d
     global layer
+    # Opens layer mode
     if key == "e":
         if enable_2d:
             back_to_3d()
@@ -51,15 +59,14 @@ def input(key):
             proper_list = proper_list_func(mine_list)
             proper_dict(cubes, proper_list)
             enable_2d = True
-
-
+    # Goes up a layer
     if key == "up arrow":
         if enable_2d: 
             layer += 1
             back_to_3d()
             proper_list = proper_list_func(mine_list)
             proper_dict(cubes, proper_list)
-
+    # Goes down a layer
     if key == "down arrow":
         if enable_2d:
             layer -= 1
