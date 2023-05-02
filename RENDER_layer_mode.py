@@ -1,7 +1,6 @@
 from ursina import *
 import RENDER_minefield_rendering
 
-Ursina()
 
 cubes = RENDER_minefield_rendering.cubes
 mine_list = list(RENDER_minefield_rendering.get_list())

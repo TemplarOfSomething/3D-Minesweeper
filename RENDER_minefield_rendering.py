@@ -1,7 +1,7 @@
 from ursina import *
 from MATH_minefield_logic import limited_minefield_dict as logic
 
-Ursina()
+app = Ursina()
 
 # Sets up dictionary for mines
 
