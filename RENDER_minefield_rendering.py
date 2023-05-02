@@ -3,9 +3,13 @@ from MATH_minefield_logic import limited_minefield_dict as logic
 
 Ursina()
 
+# Sets up dictionary for mines
+
 mine_dict = logic(5,5,5)
 
 amount = len(mine_dict)
+
+# Where mines go after being created
 
 global cubes
 cubes = {}
@@ -21,13 +25,13 @@ def get_point():
     global clicked
     clicked = mouse.world_point
     round_point()
+    destroy(mouse.hovered_entity)
 
 def round_point():
     x = int(clicked[0])
     y = int(clicked[1])
     z = int(clicked[2])
     point = (x,y,z)
-    print(point)
     return point
 
 def get_list():
@@ -38,7 +42,7 @@ for z in range(5):
     for y in range(5):
         for x in range(5):
             if mine_dict[(x,y,z)] == '*':
-                cubes[(x,y,z)] = Entity(model='cube', collider='box', color=color.red, position=(x,y,z), scale=(1,1,1), enable=True, on_click=flag)
+                cubes[(x,y,z)] = Entity(model='cube', collider='box', texture='img/Tile-Blank', position=(x,y,z), scale=(1,1,1), enable=True, on_click=flag)
             else:
                 cubes[(x,y,z)] = Entity(model='cube', collider='box', texture='img/Tile-Blank', position=(x,y,z), scale=(1,1,1), enable=True, on_click=get_point)
 
