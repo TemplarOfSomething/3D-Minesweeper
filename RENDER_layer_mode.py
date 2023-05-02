@@ -1,7 +1,7 @@
 from ursina import *
 import RENDER_minefield_rendering
 
-app = Ursina()
+Ursina()
 
 cubes = RENDER_minefield_rendering.cubes
 mine_list = list(RENDER_minefield_rendering.get_list())
@@ -69,5 +69,3 @@ def input(key):
             proper_dict(cubes, proper_list)
 
 
-
-app.run()

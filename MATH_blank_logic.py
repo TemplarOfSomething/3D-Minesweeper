@@ -1,6 +1,6 @@
 #Desc: makes a function which provides coordinates which are chained together, and their values in a dict
 
-DEBUG = True
+DEBUG = False
 from MATH_minefield_logic import adjacent_finder, logical_minefield_dict_maker
 
 if DEBUG == True:
