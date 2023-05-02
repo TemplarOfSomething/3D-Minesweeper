@@ -1,5 +1,5 @@
 from ursina import *
-from MATH_minefield_logic import logical_minefield_dict_maker as logic
+from MATH_minefield_logic import limited_minefield_dict as logic
 
 Ursina()
 
@@ -10,15 +10,25 @@ amount = len(mine_dict)
 global cubes
 cubes = {}
 
-  
-
-def clicking():
-    destroy(mouse.hovered_entity)
-    print(mouse.world_point)
+global clicked
+clicked = 0
 
 
 def flag():
     mouse.hovered_entity.color = color.gray
+
+def get_point():
+    global clicked
+    clicked = mouse.world_point
+    round_point()
+
+def round_point():
+    x = int(clicked[0])
+    y = int(clicked[1])
+    z = int(clicked[2])
+    point = (x,y,z)
+    print(point)
+    return point
 
 def get_list():
     global cubes
@@ -30,9 +40,9 @@ for z in range(5):
             if mine_dict[(x,y,z)] == '*':
                 cubes[(x,y,z)] = Entity(model='cube', collider='box', color=color.red, position=(x,y,z), scale=(1,1,1), enable=True, on_click=flag)
             else:
-                cubes[(x,y,z)] = Entity(model='cube', collider='box', texture='img/Tile-Blank', position=(x,y,z), scale=(1,1,1), enable=True, on_click=clicking)
+                cubes[(x,y,z)] = Entity(model='cube', collider='box', texture='img/Tile-Blank', position=(x,y,z), scale=(1,1,1), enable=True, on_click=get_point)
 
 
 
 ec = EditorCamera()
-Sky(color=color.blue)
+Sky(texture='background')
