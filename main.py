@@ -3,10 +3,9 @@
 from ursina import *
 from RENDER_minefield_rendering import *
 from RENDER_layer_mode import *
+from RENDER_minefield_rendering import app
 from RENDER_clicking_logic import *
 
 
-
-app = Ursina()
 
 app.run()
