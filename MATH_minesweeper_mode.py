@@ -2,8 +2,14 @@
 #mode will probably work by button activation causing LED to change
 #based on where mine is to a given location
 
+
 from MATH_minefield_logic import *
-DEBUG = True
+import requests
+from API_PostReqs_for_PC import *
+DEBUG = False
+
+#initalize LED status on server
+requests.post(url=POST_URL, data={"value":False})
 
 def mine_locator(minefield_dict:dict, adjacents:list, layer_number:int):
     for coord in adjacents:
