@@ -62,5 +62,5 @@ for z in range(5):
 
 
 
-ec = EditorCamera()
+
 Sky(texture='background')
