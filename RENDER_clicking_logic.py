@@ -3,6 +3,7 @@ import RENDER_minefield_rendering
 import MATH_blank_logic
 from time import sleep
 from MATH_minefield_logic import limited_minefield_dict as logic
+from RENDER_player_viewpoint import camera_control
 
 # Set up variables needed from imported files
 
@@ -63,6 +64,7 @@ def update():
                     already_dead = True
                 else:
                     pass
+        camera_control()
     # If not clicked on entity, nothing happens
     except AttributeError:
         already_dead = False
