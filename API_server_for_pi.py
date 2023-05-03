@@ -5,6 +5,11 @@ gpio_list = []
 led_value = {}
 app = FastAPI()
 
+#test
+@app.get("/")
+async def test_server():
+    return {"message":"hello world"}
+
 #GPIO
 @app.post("/GPIO_Post/")
 async def post_gpio(name: str, value: bool):
