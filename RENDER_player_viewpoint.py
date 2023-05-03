@@ -1,5 +1,6 @@
 from ursina import *
 
+camera.position = (2,2)
 
 def camera_control():
     camera.z += held_keys['w'] * 10 * time.dt
