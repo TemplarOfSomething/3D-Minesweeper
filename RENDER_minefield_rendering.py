@@ -22,7 +22,7 @@ clicked = 0
 # Counts the number of flags the user has at their disposal
 
 global flag_count
-flag_count = 1
+flag_count = 18
 
 # Shows number of flags left
 

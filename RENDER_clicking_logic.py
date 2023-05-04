@@ -44,13 +44,15 @@ def update():
         # Runs for right click only
         if mouse.right == True:
             # Runs if there are no flags left
-            if RENDER_minefield_rendering.flag_count > 0:
-                mouse.hovered_entity.color = color.orange
+            if RENDER_minefield_rendering.flag_count > 0 and mouse.hovered_entity.color != rgb(255,255,254):
+                mouse.hovered_entity.texture = 'img/Tile-Flag'
+                mouse.hovered_entity.color = rgb(255,255,254)
                 RENDER_minefield_rendering.flag_count -= 1
                 RENDER_minefield_rendering.flags.text = RENDER_minefield_rendering.flag_count
                 sleep(0.5)
             # If entity is already flagged, removes flag and adds back into count
-            elif mouse.hovered_entity.color == color.orange:
+            elif mouse.hovered_entity.color == rgb(255,255,254):
+                mouse.hovered_entity.texture = 'img/Tile-Blank'
                 RENDER_minefield_rendering.flag_count += 1
                 RENDER_minefield_rendering.flags.text = RENDER_minefield_rendering.flag_count
                 mouse.hovered_entity.color = color.white
