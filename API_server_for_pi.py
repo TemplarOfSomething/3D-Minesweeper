@@ -3,12 +3,14 @@ from fastapi import FastAPI
 
 gpio_list = []
 led_value = {}
+terminate = False
 app = FastAPI()
 
 #test
 @app.get("/")
 async def test_server():
-    return {"message":"hello world"}
+    return {"message":"Hello Word"}
+
 
 #GPIO
 @app.post("/GPIO_Post/")
@@ -42,11 +44,30 @@ async def post_led(value):
 
 @app.get("/LED_Get/")
 async def get_led():
-    return led_value["value"]
+    return led_value.get("value")
 
 @app.put("/LED_Put/")
 async def put_led(value):
     led_value["value"] = value
+    return {
+        "value":value
+    }
+
+#Termination
+@app.post("/Terminate_Post/")
+async def post_termination(value:bool):
+    terminate = value
+    return {
+        "value":value
+    }
+
+@app.get("/Terminate_Get/")
+async def get_termination():
+    return terminate
+
+@app.put("/Terminate_Put/")
+async def put_termination(value:bool):
+    terminate = value
     return {
         "value":value
     }
