@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 from API_PostReqs_for_pi import *
-from API_PostReqs_for_PC import *
+from API_PostReqs_for_PC import POST_LED_URL
 
 #GPIO setup
 GPIO.setmode(GPIO.BCM)

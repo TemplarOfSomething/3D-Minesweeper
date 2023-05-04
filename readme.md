@@ -1,6 +1,6 @@
 # 3D Minesweeper
 
-#### Requires Ursina, Ursina[extras], GPIOzero, math, random, time, fastAPI, Uvicorn, and Requests.
+#### Requires Ursina, Ursina[extras], RPi.GPIO, math, random, time, fastAPI, Uvicorn, and Requests.
 
 
 The classic minesweeper but in 3D.
