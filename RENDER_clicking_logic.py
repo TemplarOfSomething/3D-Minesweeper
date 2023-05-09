@@ -3,12 +3,12 @@ import RENDER_minefield_rendering
 import MATH_blank_logic
 from time import sleep
 from MATH_minefield_logic import limited_minefield_dict as logic
-from RENDER_player_viewpoint import camera_control
+from RENDER_player_viewpoint import camera_control, enable_2d
+from GPIO_PC_Integration import *
+from internetinfo import *
 
 
 # Set up variables needed from imported files
-
-global already_dead
 already_dead = False
 cubes = RENDER_minefield_rendering.cubes
 mine_dict = RENDER_minefield_rendering.mine_dict
@@ -18,7 +18,7 @@ clicked = RENDER_minefield_rendering.clicked
 
 def update():
     # Brings in all global variables
-
+    global enable_2d
     global blank_chain
     global already_dead
     global what_happened
@@ -34,6 +34,7 @@ def update():
                 what_happened.text = 'You have hit a mine and died!'
                 what_happened.color = color.red
                 button = Button(text='EXIT', position=(0,0), color=color.red, text_color=color.black, on_click=exit)
+                #requests.put(url=TERMINATION_PUT, params={"value":True})
                 button.fit_to_text()
             # Else entity is destroyed and surronding mines are shown
             else:
@@ -67,6 +68,30 @@ def update():
                     already_dead = True
                 else:
                     pass
+        #GPIO related
+        button_one_status = get_GPIO("BUTTON_ONE")
+        if  button_one_status == True:
+            if enable_2d:
+                back_to_3d()
+                enable_2d = False
+                button_one_status = False       #to stop repeated gpio input registration
+                requests.put(url=f"http://{IP}:{PORT}/GPIO_Put/", params={"name":"BUTTON_ONE", "value":"False"})
+            else:
+                proper_list = proper_list_func(mine_list)
+                proper_dict(cubes, proper_list)
+                enable_2d = True
+                button_one_status = False
+                requests.put(url=f"http://{IP}:{PORT}/GPIO_Put/", params={"name":"BUTTON_ONE", "value":"False"})
+        
+        button_two_status = get_GPIO("BUTTON_TWO")
+        if button_two_status == True:
+            if mouse.right == True:
+                led_status = sweeping_mode(mine_dict, RENDER_minefield_rendering.point)
+                requests.put(url=PUT_URL, params={"value":led_status})
+        if button_two_status == False:
+            requests.put(url=PUT_URL, params={"value":False})
+
+
     # If not clicked on entity, nothing happens
     except AttributeError:
         already_dead = False

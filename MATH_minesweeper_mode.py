@@ -8,8 +8,7 @@ import requests
 from API_PostReqs_for_PC import *
 DEBUG = False
 
-#initalize LED status on server
-#requests.post(url=POST_URL, data={"value":False})
+
 
 def mine_locator(minefield_dict:dict, adjacents:list, layer_number:int):
     for coord in adjacents:

@@ -1,8 +1,9 @@
 import requests
+from internetinfo import *
 
-POST_LED_URL = "http://{ip}:{port}/LED_Post/"       #replace with ip and port from pi, since it hosts
-GET_URL = "http://{ip}:{port}/GPIO_Get/"
-PUT_URL = "http://{ip}:{port}/LED_Put/"
+POST_LED_URL = f"http://{IP}:{PORT}/LED_Post/"       #replace with ip and port from pi, since it hosts
+GET_URL = f"http://{IP}:{PORT}/GPIO_Get/"
+PUT_URL = f"http://{IP}:{PORT}/LED_Put/"
 
 #post led
 #requests.post(url=POST_URL, data={"value":value})

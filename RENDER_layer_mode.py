@@ -49,17 +49,7 @@ def back_to_3d():
 # Waits for input from keyboard
 
 def input(key):
-    global enable_2d
     global layer
-    # Opens layer mode
-    if key == "e":          #or gpiox
-        if enable_2d:
-            back_to_3d()
-            enable_2d = False
-        else:
-            proper_list = proper_list_func(mine_list)
-            proper_dict(cubes, proper_list)
-            enable_2d = True
     # Goes up a layer
     if key == "up arrow":
         if enable_2d: 
@@ -74,11 +64,4 @@ def input(key):
             back_to_3d()
             proper_list = proper_list_func(mine_list)
             proper_dict(cubes, proper_list)
-"""
-    if key == "gpioy":        #something like this for sweeping mode
-        if mouse.left == True:
-            LED = sweeping_mode(mine_dict, clicked_coord)
-            requests.put(url=PUT_URL, data={"value":LED})   #for updating LED value
-        
-"""
 

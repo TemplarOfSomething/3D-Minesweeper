@@ -1,8 +1,9 @@
 import requests
+from internetinfo import *
 
-POST_URL = "http://{ip}:{port}/GPIO_Post/"       #replace with ip and port from pi, since it hosts
-GET_URL = "http://{ip}:{port}/LED_Get/"
-PUT_URL = "http://{ip}:{port}/GPIO_Put"
+POST_URL = f"http://{IP}:{PORT}/GPIO_Post/"       #replace with ip and port from pi, since it hosts
+GET_URL = f"http://{IP}:{PORT}/LED_Get/"
+PUT_URL = f"http://{IP}:{PORT}/GPIO_Put"
 
 #format used for both buttons
 #requests.post(url=POST_URL, data={"name":"gpio{number}", "value":False})    #false by default
